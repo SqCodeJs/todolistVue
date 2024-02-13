@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To do</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body class="bg-gray-100 p-4">
+    <div
+        id="app"
+        class="max-w-md mx-auto bg-white p-6 rounded-md shadow-md"
+    >
+        <div class="flex flex-col items-end">
+            <input
+                v-model="task"
+                placeholder="Edit me"
+                class="border border-gray-300 p-2 mb-4 w-full"
+            />
+            <button
+                @click="add"
+                class="bg-green-500 text-white px-4 py-2 rounded-md mb-4"
+            >
+                Add Task
+            </button>
+        </div>
+        <ul>
+            <li v-for="item in items" :key="item.id" class="flex items-center border-b border-gray-300 py-2">
+                <span
+                    :class="{ 'line-through text-gray-400': item.completed }"
+                    class="flex items-center mr-auto"
+                    >
+                    {{ item.name }}
+                </span>
+                <button
+                    @click="completeTask(item.id)" class="text-xs rounded-md px-6 py-2 mr-2"
+                    :class="{'bg-blue-500 text-white': item.completed, 'text-blue-500': !item.completed}"
+                >
+                    Done
+                </button>
+                <button
+                    @click="remove(item.id)"
+                    class=" text-xs bg-red-500 text-white px-4 py-2 rounded-md"
+                >
+                    Remove
+                </button>
+            </li>
+        </ul>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
